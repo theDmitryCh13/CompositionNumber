@@ -36,12 +36,14 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.tvQuestionNumber.setOnClickListener {
             launchGameFinishedFragment(GameResult(
                 true, 0,0,
                 GameSettings(0,0,0,0)
             ))
         }
+
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {

@@ -38,7 +38,6 @@ class GameFinishedFragment : Fragment() {
             override fun handleOnBackPressed() {
                 retryGame()
             }
-
         })
     }
 
