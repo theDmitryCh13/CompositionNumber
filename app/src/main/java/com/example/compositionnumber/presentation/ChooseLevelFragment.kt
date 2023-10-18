@@ -44,11 +44,12 @@ class ChooseLevelFragment: Fragment() {
     private fun launchGame(level: Level) {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.main_container,GameFragment.newInstance(level))
-            .addToBackStack(null)
+            .addToBackStack(GameFragment.NAME)
             .commit()
     }
 
     companion object {
+
         fun newInstance(): ChooseLevelFragment {
             return ChooseLevelFragment()
         }
