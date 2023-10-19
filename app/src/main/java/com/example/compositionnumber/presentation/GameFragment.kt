@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentGameBinding
-import com.example.compositionnumber.databinding.FragmentWelcomeBinding
 import com.example.compositionnumber.domain.entity.GameResult
 import com.example.compositionnumber.domain.entity.GameSettings
 import com.example.compositionnumber.domain.entity.Level
@@ -43,7 +42,6 @@ class GameFragment : Fragment() {
                 GameSettings(0,0,0,0)
             ))
         }
-
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
@@ -59,7 +57,9 @@ class GameFragment : Fragment() {
     }
 
     private fun parseLevel() {
-        level = requireArguments().getSerializable(KEY_GAME_LEVEL) as Level
+        requireArguments().getParcelable<Level>(KEY_GAME_LEVEL)?.let {
+            level = it
+        }
     }
 
     companion object {
@@ -70,7 +70,7 @@ class GameFragment : Fragment() {
         fun newInstance(level: Level): GameFragment {
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_GAME_LEVEL, level)
+                    putParcelable(KEY_GAME_LEVEL,level)
                 }
             }
         }

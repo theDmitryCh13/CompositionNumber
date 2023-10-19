@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentChooseLevelBinding
-import com.example.compositionnumber.databinding.FragmentGameFinishedBinding
 import com.example.compositionnumber.domain.entity.Level
 
 class ChooseLevelFragment: Fragment() {
