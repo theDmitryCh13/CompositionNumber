@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentGameFinishedBinding
 import com.example.compositionnumber.domain.entity.GameResult
 
@@ -34,13 +35,57 @@ class GameFinishedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                retryGame()
-            }
-        })
+        setupClickListeners()
+        bindViews()
+    }
+
+    private fun setupClickListeners() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    retryGame()
+                }
+            })
         binding.buttonRetry.setOnClickListener {
             retryGame()
+        }
+    }
+    private fun bindViews() {
+        with(binding) {
+            emojiResult.setImageResource(getImageRes(gameResult.winner))
+            tvRequireAnswers.text = String.format(
+                getString(R.string.count_right_answers_result),
+                gameResult.gameSettings.minCountOfRightAnswers
+            )
+            tvScoreAnswers.text = String.format(
+                getString(R.string.your_score),
+                gameResult.countOfRightAnswers
+            )
+            tvRequirePercents.text = String.format(
+                getString(R.string.need_count_percent_right_answers),
+                gameResult.gameSettings.minPercentOfRightAnswers
+            )
+            tvScorePercents.text = String.format(
+                getString(R.string.count_percent_right_answers),
+                getPercentOfRightAnswers()
+            )
+        }
+    }
+
+    private fun getPercentOfRightAnswers() = with(gameResult) {
+        if (countOfQuestions == 0) {
+            0
+        } else {
+            ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
+        }
+    }
+
+    private fun getImageRes(winner: Boolean): Int {
+        return if (winner) {
+            R.drawable.ic_smile
+        } else {
+            R.drawable.ic_sad
         }
     }
 
