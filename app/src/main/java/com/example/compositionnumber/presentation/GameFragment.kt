@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentGameBinding
 import com.example.compositionnumber.domain.entity.GameResult
-import com.example.compositionnumber.domain.entity.GameSettings
 import com.example.compositionnumber.domain.entity.Level
 
 class GameFragment : Fragment() {
