@@ -108,10 +108,6 @@ class GameFragment : Fragment() {
             putParcelable(GameFinishedFragment.KEY_GAME_RESULT,gameResult)
         }
         findNavController().navigate(R.id.action_gameFragment_to_gameFinishedFragment,args)
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
-//            .addToBackStack(null)
-//            .commit()
     }
 
     private fun getColorByState(state: Boolean): Int {
@@ -135,15 +131,7 @@ class GameFragment : Fragment() {
 
     companion object {
 
-        const val NAME = "GameFragment"
         const val KEY_GAME_LEVEL = "level"
 
-        fun newInstance(level: Level): GameFragment {
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_GAME_LEVEL,level)
-                }
-            }
-        }
     }
 }

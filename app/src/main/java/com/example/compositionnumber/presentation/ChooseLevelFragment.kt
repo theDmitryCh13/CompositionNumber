@@ -46,16 +46,6 @@ class ChooseLevelFragment: Fragment() {
             putParcelable(GameFragment.KEY_GAME_LEVEL,level)
         }
         findNavController().navigate(R.id.action_chooseLevelFragment_to_gameFragment,args)
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.main_container,GameFragment.newInstance(level))
-//            .addToBackStack(GameFragment.NAME)
-//            .commit()
     }
 
-    companion object {
-
-        fun newInstance(): ChooseLevelFragment {
-            return ChooseLevelFragment()
-        }
-    }
 }

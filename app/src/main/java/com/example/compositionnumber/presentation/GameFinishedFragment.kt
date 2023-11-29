@@ -102,12 +102,5 @@ class GameFinishedFragment : Fragment() {
 
         const val KEY_GAME_RESULT = "gameResult"
 
-        fun newInstance(gameResult: GameResult): GameFinishedFragment {
-            return GameFinishedFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_GAME_RESULT,gameResult)
-                }
-            }
-        }
     }
 }
