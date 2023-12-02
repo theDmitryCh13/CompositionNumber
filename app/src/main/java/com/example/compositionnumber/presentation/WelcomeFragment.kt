@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
 
-    private var _binding : FragmentWelcomeBinding? = null
+    private var _binding: FragmentWelcomeBinding? = null
     private val binding: FragmentWelcomeBinding
         get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding is null")
 
@@ -20,7 +22,7 @@ class WelcomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWelcomeBinding.inflate(inflater,container,false)
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,7 +35,17 @@ class WelcomeFragment : Fragment() {
 
     private fun launchChooseLevelFragment() {
 
-        findNavController().navigate(R.id.action_welcomeFragment3_to_chooseLevelFragment)
+        findNavController().navigate(
+            R.id.action_welcomeFragment3_to_chooseLevelFragment,
+            bundleOf(),
+            navOptions {
+                this.anim {
+                    enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
+                    popEnter = androidx.navigation.ui.R.anim.nav_default_pop_enter_anim
+                    popExit = androidx.navigation.ui.R.anim.nav_default_pop_exit_anim
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

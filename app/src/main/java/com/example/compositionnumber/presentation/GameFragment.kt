@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.compositionnumber.R
 import com.example.compositionnumber.databinding.FragmentGameBinding
 import com.example.compositionnumber.domain.entity.GameResult
@@ -80,7 +81,7 @@ class GameFragment : Fragment() {
             }
         }
         viewModel.percentOfRightAnswers.observe(viewLifecycleOwner) {
-            binding.progressBar.setProgress(it,true)
+            binding.progressBar.setProgress(it, true)
         }
         viewModel.enoughCountOfRightAnswers.observe(viewLifecycleOwner) {
             binding.tvAnswersProgress.setTextColor(getColorByState(it))
@@ -105,9 +106,12 @@ class GameFragment : Fragment() {
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
         val args = Bundle().apply {
-            putParcelable(GameFinishedFragment.KEY_GAME_RESULT,gameResult)
+            putParcelable(GameFinishedFragment.KEY_GAME_RESULT, gameResult)
         }
-        findNavController().navigate(R.id.action_gameFragment_to_gameFinishedFragment,args)
+        findNavController().navigate(
+            R.id.action_gameFragment_to_gameFinishedFragment,
+            args,
+        )
     }
 
     private fun getColorByState(state: Boolean): Int {
@@ -116,8 +120,9 @@ class GameFragment : Fragment() {
         } else {
             android.R.color.holo_red_light
         }
-        return ContextCompat.getColor(requireContext(),colorId)
+        return ContextCompat.getColor(requireContext(), colorId)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

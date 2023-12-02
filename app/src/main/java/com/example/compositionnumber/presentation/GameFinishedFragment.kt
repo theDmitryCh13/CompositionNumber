@@ -40,6 +40,11 @@ class GameFinishedFragment : Fragment() {
         bindViews()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun setupClickListeners() {
         binding.buttonRetry.setOnClickListener {
             retryGame()
@@ -81,11 +86,6 @@ class GameFinishedFragment : Fragment() {
         } else {
             R.drawable.ic_sad
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun parseGameResult() {
