@@ -50,10 +50,11 @@ class ChooseLevelFragment : Fragment() {
             R.id.action_chooseLevelFragment_to_gameFragment,
             args,
             navOptions {
-                this.anim {
+                anim {
                     enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
                     popEnter = androidx.navigation.ui.R.anim.nav_default_pop_enter_anim
                     popExit = androidx.navigation.ui.R.anim.nav_default_pop_exit_anim
+                    exit = androidx.navigation.ui.R.anim.nav_default_exit_anim
                 }
             }
         )
